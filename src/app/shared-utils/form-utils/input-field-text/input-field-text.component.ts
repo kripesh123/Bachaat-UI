@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../user';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-input-field-text',
@@ -14,16 +14,24 @@ export class InputFieldTextComponent implements OnInit {
   @Input() maxLength?: number;
   @Input() fg: FormGroup;
   model: User;
-  constructor() {
+  constructor(private fb: FormBuilder) {
     this.model = new User(1, 'Rabeendranath123', 'Naga', '', '');
   }
   ngOnInit() {
-    this.fg = new FormGroup({
-      fcn: new FormControl('', [
+    // this.fg = new FormGroup({
+    //   fcn: new FormControl('', [
+    //     Validators.required,
+    //     Validators.minLength(this.minLength),
+    //     Validators.maxLength(this.maxLength)
+    //   ]),
+    // });
+
+    this.fg = this.fb.group({
+      fcn: ['', [
         Validators.required,
         Validators.minLength(this.minLength),
         Validators.maxLength(this.maxLength)
-      ]),
+      ]]
     });
   }
   get fcn() { return this.fg.get('fcn'); }
