@@ -7,4 +7,9 @@
     <button class="btn btn-primary">Send</button>
     <button type="button" class="btn btn-primary" (click)="heroForm.reset()">Reset</button>
   </form>
+
+  <form>
+    <app-input-field-password [labelName]="'Password'" [optional]="false" [minLength]="6" [maxLength]="15"></app-input-field-password>
+  </form>
+
 </div>
